@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: 同步到豆瓣日记
-Version: 0.1
+Version: 0.2
 Plugin URL:http://www.justintseng.com
 Description: 发表日志时可选择是否拷备一份至豆瓣日记。
 Author: Justin Tseng
@@ -34,7 +34,7 @@ function douban_note_publish()//发布
 	if($logData['hide'] != 'y' && $GLOBALS["douban_note_hide"] != 'n')
 	{
 		$title = $logData['title'];
-		$content = strip_tags(stripslashes($logData['content'])) . '
+		$content = str_replace(array('&nbsp;', ' '), array(),strip_tags(stripslashes($logData['content']))) . '
 原文地址：' .Url::log($blogid);
 
 		// 载入豆瓣Oauth类和API类
